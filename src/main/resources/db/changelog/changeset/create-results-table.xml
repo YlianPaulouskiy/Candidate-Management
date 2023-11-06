@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create-results-table" author="paulouskiyulyan@gmail.com">
+        <preConditions>
+            <not>
+                <tableExists tableName="results"/>
+            </not>
+        </preConditions>
+        <comment>Create table for results of tests</comment>
+        <createTable tableName="results">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score" type="decimal(3,1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="candidate_test_id" type="bigint">
+                <constraints foreignKeyName="fk_direction_candidates"
+                             references="candidate_tests(id)" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

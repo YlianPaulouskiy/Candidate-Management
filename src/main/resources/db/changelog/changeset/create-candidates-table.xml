@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create-candidates-table" author="paulouskiyulyan@gmail.com">
+        <preConditions>
+            <not>
+                <tableExists tableName="candidates"/>
+            </not>
+        </preConditions>
+        <comment>Create table for candidates</comment>
+        <createTable tableName="candidates">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="lastname" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo_path" type="varchar(255)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="cv_path" type="varchar(255)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

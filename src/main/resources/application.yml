@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    url: ${DATABASE_URL}
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: db/changelog/changelog.xml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2048
+      max-file-size: 5MB
+logging:
+  level:
+    root: INFO
+  file:
+    name: target/candidate-management.log
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+app:
+  file:
+    bucket: classpath:/target
